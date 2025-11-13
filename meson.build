@@ -235,6 +235,34 @@ meson_render_jinja2 = files('tools/meson-render-jinja2.py')
 jinja2_cmdline = [meson_render_jinja2, config_h]
 
 #####################################################################
+# main library
+
+includes = [
+        include_directories(
+                'src',
+                'include',
+        ),
+]
+
+subdir('include')
+subdir('src')
+
+libmuslpolyfill = shared_library(
+        'muslpolyfill',
+        version : project_major_version,
+        include_directories : includes,
+        implicit_include_directories : false,
+        link_args : ['-shared',
+                     # Make sure our library is never deleted from memory.
+                     '-z', 'nodelete',
+                     '-Wl,--version-script=' + libmuslpolyfill_sym_path],
+        link_whole : [libshared_static],
+        dependencies : [userspace],
+        link_depends : libmuslpolyfill_sym,
+        install : true,
+        install_dir : libdir)
+
+#####################################################################
 # install
 
 install_data('LICENSE',
