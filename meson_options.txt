@@ -1,0 +1,7 @@
+# -*- mode: meson -*-
+# SPDX-License-Identifier: LGPL-2.1-or-later
+
+option('pkgconfiglibdir', type : 'string', value : '',
+       description : 'directory for standard pkg-config files')
+option('docdir', type : 'string',
+       description : 'documentation directory')
