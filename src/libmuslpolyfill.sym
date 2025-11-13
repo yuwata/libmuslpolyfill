@@ -4,6 +4,8 @@ LIBMUSLPOLYFILL_1 {
 global:
         /* glob.h */
         mpf_glob;
+        /* printf.h */
+        mpf_parse_printf_format;
 local:
         *;
 };

@@ -2,6 +2,7 @@
 
 headers = files(
         'glob.h',
+        'printf.h',
 )
 
 install_headers(
